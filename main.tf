@@ -44,7 +44,7 @@ depends_on = [terraform_data.main]
 }
 
 resource "aws_ami_from_instance" "main" {
-  name               = "${var.project}-${var.environment}-${var.component}-${var.app_version}-${aws_instance.catalogue.id}"
+  name               = "${var.project}-${var.environment}-${var.component}-${var.app_version}-${aws_instance.main.id}"
   source_instance_id = aws_instance.main.id
   depends_on = [aws_ec2_instance_state.main]
 }
