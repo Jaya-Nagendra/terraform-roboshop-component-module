@@ -137,7 +137,7 @@ resource "aws_autoscaling_group" "main" {
   instance_refresh {
     strategy = "Rolling"
     preferences {
-      min_healthy_percentage = 70
+      min_healthy_percentage = 50
     }
     triggers = ["launch_template"]
   }
@@ -165,7 +165,6 @@ resource "aws_autoscaling_group" "main" {
 
 resource "aws_autoscaling_policy" "main" {
   name                   = "${var.project}-${var.environment}-${var.component}"
-  adjustment_type        = "ChangeInCapacity"
   autoscaling_group_name = aws_autoscaling_group.main.name
   policy_type            = "TargetTrackingScaling"
   estimated_instance_warmup = 120
